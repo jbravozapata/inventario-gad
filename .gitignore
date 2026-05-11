@@ -17,3 +17,9 @@ packages/
 publish/
 
 TestResults/
+
+Debug/
+Release/
+
+*.exe
+*.msi
