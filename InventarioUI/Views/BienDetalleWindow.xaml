@@ -1,0 +1,340 @@
+﻿<Window x:Class="InventarioUI.Views.BienDetalleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Ficha del bien"
+        Width="1000"
+        Height="650"
+        WindowStartupLocation="CenterOwner"
+        Background="#F3F6F9">
+
+    <Grid Margin="25">
+
+        <Border Background="White"
+                CornerRadius="10"
+                Padding="25"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20"
+                                  ShadowDepth="2"
+                                  Opacity="0.15"/>
+            </Border.Effect>
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- ========================= -->
+                <!-- ENCABEZADO -->
+                <!-- ========================= -->
+
+                <Grid Grid.Row="0" Margin="0,0,0,20">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- LOGO -->
+                    <Image Width="100"
+                           Height="100"
+                           Stretch="Uniform"
+                           Source="/InventarioUI;component/Asset/logo_gad.png"/>
+
+                    <!-- TITULOS -->
+                    <StackPanel Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                Margin="10">
+
+                        <TextBlock Text="GAD PARROQUIAL RURAL DE CARACOL"
+                                   FontWeight="Bold"
+                                   FontSize="22"
+                                   Foreground="#1B5E4A"
+                                   TextAlignment="Center"/>
+
+                        <TextBlock Text="Unidad de Control de Activos"
+                                   FontSize="14"
+                                   Foreground="#6B7280"
+                                   TextAlignment="Center"
+                                   Margin="0,5,0,0"/>
+
+                        <TextBlock Text="Ficha del bien institucional"
+                                   FontSize="13"
+                                   Foreground="#9CA3AF"
+                                   TextAlignment="Center"
+                                   Margin="0,2,0,0"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- ========================= -->
+                <!-- CONTENIDO -->
+                <!-- ========================= -->
+
+                <Grid Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- ========================= -->
+                    <!-- DATOS DEL BIEN -->
+                    <!-- ========================= -->
+
+                    <Grid Margin="0,0,20,0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- CODIGO -->
+                        <TextBlock Text="Código"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtCodigo"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 BorderThickness="1"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- DESCRIPCION -->
+                        <TextBlock Text="Descripción"
+                                   Grid.Row="1"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtDescripcion"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- MARCA -->
+                        <TextBlock Text="Marca"
+                                   Grid.Row="2"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtMarca"
+                                 Grid.Row="2"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- MODELO -->
+                        <TextBlock Text="Modelo"
+                                   Grid.Row="3"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtModelo"
+                                 Grid.Row="3"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- SERIE -->
+                        <TextBlock Text="Serie"
+                                   Grid.Row="4"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtSerie"
+                                 Grid.Row="4"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- PRECIO -->
+                        <TextBlock Text="Precio del bien"
+                                   Grid.Row="5"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtPrecio"
+                                 Grid.Row="5"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- VALOR TOTAL -->
+                        <TextBlock Text="Valor total"
+                                   Grid.Row="6"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtValorTotal"
+                                 Grid.Row="6"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 FontWeight="Bold"
+                                 Foreground="#1B5E4A"
+                                 IsReadOnly="True"/>
+
+                        <!-- ESTADO -->
+                        <TextBlock Text="Estado del bien"
+                                   Grid.Row="7"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtEstado"
+                                 Grid.Row="7"
+                                 Grid.Column="1"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 IsReadOnly="True"/>
+
+                        <!-- CLASIFICACION -->
+                        <TextBlock Text="Clasificación"
+           Grid.Row="8"
+           FontWeight="SemiBold"
+           VerticalAlignment="Center"/>
+
+                        <TextBox x:Name="txtClasificacion"
+         Grid.Row="8"
+         Grid.Column="1"
+         Background="#F9FAFB"
+         BorderBrush="#D1D5DB"
+         Padding="8"
+         FontSize="14"
+         IsReadOnly="True"/>
+
+                        <!-- OBSERVACION -->
+                        <TextBlock Text="Observación"
+                                   Grid.Row="9"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Top"/>
+
+                        <TextBox x:Name="txtObservacion"
+                                 Grid.Row="9"
+                                 Grid.Column="1"
+                                 Height="70"
+                                 Background="#F9FAFB"
+                                 BorderBrush="#D1D5DB"
+                                 Padding="8"
+                                 FontSize="14"
+                                 TextWrapping="Wrap"
+                                 IsReadOnly="True"/>
+
+                    </Grid>
+
+
+                    <!-- ========================= -->
+                    <!-- FOTO DEL BIEN -->
+                    <!-- ========================= -->
+
+                    <Border Grid.Column="1"
+                            Background="#F9FAFB"
+                            BorderBrush="#E5E7EB"
+                            BorderThickness="1"
+                            CornerRadius="8">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Fotografía del bien"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       Margin="0,10,0,0"
+                                       Foreground="#374151"/>
+
+                            <Image x:Name="imgBien"
+       Grid.Row="1"
+       Margin="15"
+       Stretch="Uniform"
+       Cursor="Hand"
+       MouseLeftButtonUp="ImgBien_Click"/>
+
+                        </Grid>
+
+                    </Border>
+
+                </Grid>
+
+                <!-- ========================= -->
+                <!-- BOTONES -->
+                <!-- ========================= -->
+
+                <StackPanel Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            Margin="0,20,0,0">
+
+                    <Button Content="Exportar PDF"
+            Width="150"
+            Height="36"
+            Background="#2563EB"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            FontWeight="SemiBold"
+            Margin="0,0,10,0"
+            Click="BtnExportar_Click"/>
+
+                    <Button Content="Cerrar"
+            Width="120"
+            Height="36"
+            Background="#374151"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            FontWeight="SemiBold"
+            Click="BtnCerrar_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</Window>

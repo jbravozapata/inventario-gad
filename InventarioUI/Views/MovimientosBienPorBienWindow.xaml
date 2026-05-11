@@ -1,0 +1,211 @@
+﻿<Window x:Class="InventarioUI.Views.MovimientosBienPorBienWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Historial de movimientos del bien"
+        Width="1100"
+        Height="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F9FAFB">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ========================= -->
+        <!-- TÍTULO -->
+        <!-- ========================= -->
+        <TextBlock x:Name="txtTitulo"
+                   FontSize="22"
+                   FontWeight="Bold"
+                   Foreground="#11261E"
+                   Margin="0,0,0,15"/>
+
+        <!-- ========================= -->
+        <!-- TABLA -->
+        <!-- ========================= -->
+        <TabControl Grid.Row="1">
+
+            <!-- ========================= -->
+            <!-- TABLA -->
+            <!-- ========================= -->
+            <TabItem Header="Tabla">
+                <Border Background="White"
+                CornerRadius="10"
+                Padding="10"
+                BorderBrush="#D1D5DB"
+                BorderThickness="1">
+
+                    <DataGrid x:Name="dgMovimientos"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          CanUserAddRows="False"
+          GridLinesVisibility="None"
+          HeadersVisibility="Column"
+          RowHeight="34"
+          ColumnHeaderHeight="36"
+          AlternatingRowBackground="#F6F8F6"
+          BorderThickness="0"
+          HorizontalScrollBarVisibility="Auto"
+          VerticalScrollBarVisibility="Auto">
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="FECHA"
+        Binding="{Binding Fecha, StringFormat=dd/MM/yyyy HH:mm}"
+        Width="170"/>
+
+                            <DataGridTextColumn Header="TIPO"
+        Binding="{Binding Tipo}"
+        Width="140"/>
+
+                            <DataGridTextColumn Header="USUARIO"
+    Binding="{Binding Usuario.NombreCompleto}"
+    Width="200"/>
+
+                            <DataGridTextColumn Header="UBICACIÓN ORIGEN"
+        Binding="{Binding UbicacionOrigen.Nombre}"
+        Width="180"/>
+
+                            <DataGridTextColumn Header="UBICACIÓN DESTINO"
+        Binding="{Binding UbicacionDestino.Nombre}"
+        Width="180"/>
+
+                            <DataGridTextColumn Header="ESTADO ANTERIOR"
+        Binding="{Binding EstadoAnterior}"
+        Width="160"/>
+
+                            <DataGridTextColumn Header="ESTADO NUEVO"
+        Binding="{Binding EstadoNuevo}"
+        Width="160"/>
+
+                            <DataGridTextColumn Header="OBSERVACIÓN"
+                    Binding="{Binding Observacion}"
+                    Width="250"/>
+
+                        </DataGrid.Columns>
+
+                        <!-- columnas iguales a las que ya tienes -->
+
+                    </DataGrid>
+
+                </Border>
+            </TabItem>
+
+            <!-- ========================= -->
+            <!-- TIMELINE -->
+            <!-- ========================= -->
+            <TabItem Header="Línea de tiempo">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <ItemsControl x:Name="timelineMovimientos">
+
+                        <ItemsControl.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <Grid Margin="10">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- PUNTO DE TIMELINE -->
+                                    <StackPanel HorizontalAlignment="Center">
+
+                                        <Ellipse Width="10"
+                     Height="10"
+                     Fill="#1B5E4A"/>
+
+                                        <Rectangle Width="2"
+                       Fill="#D1D5DB"
+                       Height="80"
+                       Margin="0,4,0,0"/>
+
+                                    </StackPanel>
+
+                                    <!-- TARJETA -->
+                                    <Border Grid.Column="1"
+                Padding="10"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1"
+                CornerRadius="6"
+                Background="White">
+
+                                        <StackPanel>
+
+                                            <TextBlock FontWeight="Bold"
+                           FontSize="14"
+                           Text="{Binding Fecha, StringFormat=dd/MM/yyyy HH:mm}" />
+
+                                            <TextBlock Text="{Binding Tipo}"
+                           FontWeight="SemiBold"
+                           Foreground="#1B5E4A"
+                           Margin="0,2,0,4"/>
+
+                                            <TextBlock Text="{Binding Usuario.NombreCompleto, StringFormat=Usuario: {0}}"
+           FontStyle="Italic"
+           Foreground="#6B7280"
+           Margin="0,2,0,4"/>
+
+                                            <TextBlock Text="{Binding Observacion}"
+                           TextWrapping="Wrap"/>
+
+                                            <TextBlock Text="{Binding UbicacionOrigen.Nombre, StringFormat=Origen: {0}}"/>
+
+                                            <TextBlock Text="{Binding UbicacionDestino.Nombre, StringFormat=Destino: {0}}"/>
+
+                                        </StackPanel>
+
+                                    </Border>
+
+                                </Grid>
+
+                            </DataTemplate>
+
+                        </ItemsControl.ItemTemplate>
+
+                    </ItemsControl>
+
+                </ScrollViewer>
+
+            </TabItem>
+
+        </TabControl>
+
+        <!-- ========================= -->
+        <!-- BOTONES -->
+        <!-- ========================= -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,15,0,0">
+
+            <Button Content="Exportar a Excel"
+                    Width="160"
+                    Height="36"
+                    Margin="0,0,10,0"
+                    Background="#1B5E4A"
+                    Foreground="White"
+                    FontWeight="SemiBold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="BtnExportarExcel_Click"/>
+
+            <Button Content="Cerrar"
+                    Width="100"
+                    Height="36"
+                    Background="#6B7280"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    Click="BtnCerrar_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

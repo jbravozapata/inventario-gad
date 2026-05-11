@@ -1,0 +1,246 @@
+﻿<UserControl x:Class="InventarioUI.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F3F6F9">
+
+    <Grid Margin="25">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- TITULO -->
+        <TextBlock Text="Dashboard"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Foreground="#11261E"
+                   Margin="0,0,0,25"/>
+
+        <!-- KPI CARDS (ARREGLADO) -->
+        <UniformGrid Grid.Row="1"
+                     Columns="3"
+                     Margin="0,0,0,25">
+
+            <!-- BIENES -->
+            <Border Background="#1B5E4A" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#A5D6A7"/>
+                    <TextBlock Text="Bienes registrados" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtTotalBienes" Text="0" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <!-- VALOR -->
+            <Border Background="#164B35" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#A5D6A7"/>
+                    <TextBlock Text="Valor patrimonial" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtValorTotal" Text="$0.00" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <!-- DEPRECIACION -->
+            <Border Background="#2E7D5A" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#A5D6A7"/>
+                    <TextBlock Text="Depreciación acumulada" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtDepreciacion" Text="$0.00" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <!-- MALOS -->
+            <Border Background="#C62828" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#FFCDD2"/>
+                    <TextBlock Text="Bienes en mal estado" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtBienesMalos" Text="0" Foreground="White" FontSize="32" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <!-- ADMIN -->
+            <Border Background="#4B5563" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#D1D5DB"/>
+                    <TextBlock Text="Control Administrativo" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtAdmin" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+            <!-- PPE -->
+            <Border Background="#1E40AF" CornerRadius="14" Padding="20" Margin="8">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="" FontFamily="Segoe Fluent Icons" FontSize="28" Foreground="#BFDBFE"/>
+                    <TextBlock Text="P.P.E" Foreground="White" FontSize="16"/>
+                    <TextBlock x:Name="txtPPE" Text="0" Foreground="White" FontSize="28" FontWeight="Bold"/>
+                </StackPanel>
+            </Border>
+
+        </UniformGrid>
+
+        <!-- CONTENIDO INFERIOR (ARREGLADO) -->
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ESTADOS -->
+            <Border Background="White"
+                    CornerRadius="14"
+                    Padding="20"
+                    Margin="0,0,20,0">
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.15"/>
+                </Border.Effect>
+
+                <StackPanel>
+
+                    <TextBlock Text="Estado de bienes"
+                               FontSize="18"
+                               FontWeight="SemiBold"
+                               Foreground="#11261E"
+                               Margin="0,0,0,10"/>
+
+                    <TextBlock x:Name="txtEstadoBueno"
+                               FontSize="16"
+                               Foreground="#1B5E4A"
+                               Margin="0,4"/>
+
+                    <TextBlock x:Name="txtEstadoRegular"
+                               FontSize="16"
+                               Foreground="#B08900"
+                               Margin="0,4"/>
+
+                    <TextBlock x:Name="txtEstadoMalo"
+                               FontSize="16"
+                               Foreground="#C62828"
+                               Margin="0,4"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- MOVIMIENTOS -->
+            <Border Grid.Column="1"
+                    Background="White"
+                    CornerRadius="14"
+                    Padding="15">
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10" Opacity="0.15"/>
+                </Border.Effect>
+
+                <StackPanel>
+
+                    <TextBlock Text="Últimos movimientos"
+                               FontSize="20"
+                               FontWeight="SemiBold"
+                               Foreground="#11261E"
+                               Margin="0,0,0,12"/>
+
+                    <ListView x:Name="lvMovimientos"
+          BorderThickness="0"
+          Background="Transparent"
+          Padding="0"
+          ScrollViewer.VerticalScrollBarVisibility="Auto"
+          MouseLeave="LvMovimientos_MouseLeave">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Border Padding="12,10"
+                Margin="0,6"
+                CornerRadius="8"
+                Background="#F8FAFC">
+
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="120"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- 📅 FECHA -->
+                                        <StackPanel VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding Fecha, StringFormat='{}{0:dd/MM}'}"
+                               FontSize="12"
+                               Foreground="#6B7280"/>
+
+                                            <TextBlock Text="{Binding Fecha, StringFormat='{}{0:HH:mm}'}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               Foreground="#111827"/>
+                                        </StackPanel>
+
+                                        <!-- 📦 BIEN + DETALLE -->
+                                        <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center"
+                            Margin="10,0">
+
+                                            <TextBlock Text="{Binding Bien.Descripcion}"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="#111827"/>
+
+                                            <TextBlock Text="{Binding Observacion}"
+                               FontSize="12"
+                               Foreground="#6B7280"
+                               TextWrapping="Wrap"/>
+                                        </StackPanel>
+
+                                        <!-- 🔵 TIPO -->
+                                        <Border Grid.Column="2"
+                        Background="#E0F2FE"
+                        CornerRadius="20"
+                        Padding="6,3"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding Tipo}"
+                               Foreground="#2563EB"
+                               FontWeight="SemiBold"
+                               FontSize="11"/>
+                                        </Border>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

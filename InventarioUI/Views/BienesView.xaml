@@ -1,0 +1,457 @@
+﻿<UserControl x:Class="InventarioUI.Views.BienesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F0F3F0">
+
+    <UserControl.Resources>
+
+        <!-- 🎨 PALETAS DEFINIDAS COMO BRUSH (CORRECTO PARA WPF) -->
+        <SolidColorBrush x:Key="MenuBg" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="MenuBorder" Color="#E2E8F0"/>
+        <SolidColorBrush x:Key="MenuHover" Color="#F0F7F4"/>
+        <SolidColorBrush x:Key="MenuActive" Color="#D6EFE3"/>
+        <SolidColorBrush x:Key="MenuText" Color="#2D3748"/>
+
+        <!-- ⭐ SOMBRA REALISTA -->
+        <DropShadowEffect x:Key="SoftShadow"
+                          BlurRadius="20"
+                          Opacity="0.18"
+                          ShadowDepth="2"
+                          Color="#000000" />
+
+        <!-- ⭐ ESTILO PREMIUM PARA CONTEXTMENU -->
+        <Style TargetType="ContextMenu">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Background" Value="{StaticResource MenuBg}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource MenuBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ContextMenu">
+                        <Border CornerRadius="10"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Effect="{StaticResource SoftShadow}">
+                            <StackPanel IsItemsHost="True"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ⭐ ESTILO PREMIUM PARA CADA MENUITEM -->
+        <Style TargetType="MenuItem">
+            <Setter Property="Foreground" Value="{StaticResource MenuText}" />
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="MenuItem">
+                        <Border x:Name="root"
+                                Background="Transparent"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="8"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ContentPresenter Grid.Column="0"
+                                                  Content="{TemplateBinding Icon}"
+                                                  VerticalAlignment="Center"/>
+
+                                <ContentPresenter Grid.Column="2"
+                                                  VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="root" Property="Background"
+                                        Value="{StaticResource MenuHover}"/>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="root" Property="Background"
+                                        Value="{StaticResource MenuActive}"/>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <!-- ============================
+              CONTENIDO
+    ============================= -->
+    <Grid Margin="25,35,25,25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0"
+              HorizontalScrollBarVisibility="Auto"
+              VerticalScrollBarVisibility="Disabled"
+              Margin="0,0,0,10"
+              Padding="0,5,0,5">
+            
+
+            <!-- ⭐ ENCABEZADO SUPERIOR -->
+            <DockPanel LastChildFill="False"
+           Margin="0,5,0,5">
+                
+                
+
+                <TextBlock Text="Bienes Institucionales"
+               FontSize="26"
+               FontWeight="Bold"
+               Foreground="#11261E"
+               VerticalAlignment="Center"/>
+
+            <!-- Buscador -->
+            <TextBox x:Name="txtBuscar"
+             Width="250"
+             Height="32"
+             Margin="20,0,10,0"
+             VerticalAlignment="Center"
+             Padding="8"
+             Background="White"
+             BorderBrush="#CBD5D1"
+             TextChanged="TxtBuscar_TextChanged"/>
+
+            <!-- 1️⃣ NUEVO BIEN -->
+            <Button Content="+ Nuevo bien"
+            Width="130"
+            Height="32"
+            Margin="0,0,10,0"
+            Background="#1B5E4A"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnNuevo_Click"/>
+
+            <!-- 2️⃣ NUEVO MOVIMIENTO -->
+            <Button Content="+ Nuevo movimiento"
+            Width="150"
+            Height="32"
+            Margin="0,0,10,0"
+            Background="#4B5563"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnMovimientoBien_Click"/>
+
+            <!-- 3️⃣ HISTORIAL -->
+            <Button Content="Historial de movimientos"
+            Width="160"
+            Height="32"
+            Margin="0,0,10,0"
+            Background="#374151"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnHistorialBien_Click"/>
+
+            <!-- 4️⃣ EXPORTAR -->
+            <Button Content="Exportar bienes"
+            Width="150"
+            Height="32"
+            Margin="0,0,10,0"
+            Background="#1B5E4A"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnExportarBienes_Click"/>
+
+            <!-- 5️⃣ IMPORTAR -->
+            <Button Content="Importar bienes"
+            Width="150"
+            Height="32"
+            Margin="0,0,10,0"
+            Background="#4B5563"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            Click="BtnImportarBienes_Click"/>
+
+        </DockPanel>
+
+        </ScrollViewer>
+
+        <!-- ⭐ TABS -->
+        <!-- ⭐ FILTROS -->
+        <Grid Grid.Row="1" Margin="0,18,0,12">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- ================= FILTROS (IZQUIERDA) ================= -->
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+
+                <!-- ESTADO -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Estado"
+                       FontSize="12"
+                       Foreground="#6B7280"
+                       Margin="2,0,0,6"/>
+
+                    <ComboBox x:Name="cmbEstado"
+                      Width="160"
+                      Height="34"
+                      Padding="6"
+                      Background="#F9FAFB"
+                      BorderBrush="#D1D5DB"
+                      SelectionChanged="FiltroEstadoChanged">
+
+                        <ComboBoxItem Content="Todos"/>
+                        <ComboBoxItem Content="Buenos" Tag="B"/>
+                        <ComboBoxItem Content="Regulares" Tag="R"/>
+                        <ComboBoxItem Content="Malos" Tag="M"/>
+
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- UBICACIÓN -->
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Ubicación"
+                       FontSize="12"
+                       Foreground="#6B7280"
+                       Margin="2,0,0,6"/>
+
+                    <ComboBox x:Name="cmbUbicacion"
+                      Width="200"
+                      Height="34"
+                      Padding="6"
+                      Background="#F9FAFB"
+                      BorderBrush="#D1D5DB"
+                      SelectionChanged="FiltroUbicacionChanged"/>
+                </StackPanel>
+
+                <!-- TIPO -->
+                <StackPanel>
+                    <TextBlock Text="Tipo de bien"
+                       FontSize="12"
+                       Foreground="#6B7280"
+                       Margin="2,0,0,6"/>
+
+                    <ComboBox x:Name="cmbTipo"
+                      Width="220"
+                      Height="34"
+                      Padding="6"
+                      Background="#F9FAFB"
+                      BorderBrush="#D1D5DB"
+                      SelectionChanged="FiltroTipoChanged">
+
+                        <ComboBoxItem Content="Todos"/>
+                        <ComboBoxItem Content="Control Administrativo"/>
+                        <ComboBoxItem Content="Propiedad, Planta y Equipo"/>
+
+                    </ComboBox>
+                </StackPanel>
+
+            </StackPanel>
+
+            <!-- ================= BOTÓN DERECHA ================= -->
+            <Button Grid.Column="1"
+            Content="Limpiar filtros"
+            Width="120"
+            Height="34"
+            Background="#6B7280"
+            Foreground="White"
+            BorderThickness="0"
+            Cursor="Hand"
+            VerticalAlignment="Bottom"
+            Click="BtnLimpiarFiltros_Click"/>
+
+        </Grid>
+
+        <!-- ⭐ TABLA DE BIENES -->
+        <Border Grid.Row="2"
+                Background="White"
+                CornerRadius="8"
+                Padding="10"
+                BorderBrush="#D1D5DB"
+                BorderThickness="1">
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="8" Opacity="0.12"/>
+            </Border.Effect>
+
+            <DataGrid x:Name="dgBienes"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          IsReadOnly="True"
+          MouseDoubleClick="DgBienes_MouseDoubleClick"
+          Background="Transparent"
+          GridLinesVisibility="None"
+          HeadersVisibility="Column"
+          RowHeight="34"
+          ColumnHeaderHeight="36"
+          AlternatingRowBackground="#F6F8F6"
+          BorderThickness="0" SelectionChanged="dgBienes_SelectionChanged">
+
+                <!-- CABECERAS CENTRADAS -->
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="Background" Value="#E8EFEA"/>
+                        <Setter Property="Foreground" Value="#11261E"/>
+                        <Setter Property="Padding" Value="6"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+
+                <!-- CELDAS CENTRADAS -->
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="6"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <!-- ✅ TUS COLUMNAS EN EL ORDEN QUE PEDISTE -->
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID"
+                                        Binding="{Binding Id}"
+                                        Width="60"/>
+
+                    <DataGridTextColumn Header="CANTIDAD"
+                                        Binding="{Binding Cantidad}"
+                                        Width="90"/>
+
+                    <DataGridTextColumn Header="CODIGO"
+                                        Binding="{Binding CodigoContable}"
+                                        Width="140"/>
+
+                    <DataGridTextColumn Header="DESCRIPCION"
+                                        Binding="{Binding Descripcion}"
+                                        Width="260"/>
+
+                    <DataGridTextColumn Header="UBICACIÓN"
+                                        Binding="{Binding Ubicacion.Nombre}"
+                                        Width="140"/>
+                    <DataGridTextColumn Header="TIPO"
+Binding="{Binding Clasificacion}"
+Width="180"/>
+
+                    <DataGridTextColumn Header="MARCA"
+                                        Binding="{Binding Marca}"
+                                        Width="140"/>
+
+                    <DataGridTextColumn Header="MODELO"
+                                        Binding="{Binding Modelo}"
+                                        Width="140"/>
+
+                    <DataGridTextColumn Header="SERIE"
+                                        Binding="{Binding Serie}"
+                                        Width="160"/>
+
+                    <DataGridTextColumn Header="PRECIO DEL BIEN"
+                                        Binding="{Binding Precio, StringFormat=C}"
+                                        Width="130"/>
+
+                    <DataGridTextColumn Header="FECHA DE COMPRA"
+                                        Binding="{Binding FechaCompra, StringFormat=dd/MM/yyyy}"
+                                        Width="140"/>
+
+                    <DataGridTextColumn Header="VIDA UTIL"
+                                        Binding="{Binding VidaUtil}"
+                                        Width="110"/>
+
+                    <DataGridTextColumn Header="ESTADO (B/R/M)"
+                                        Binding="{Binding EstadoBien}"
+                                        Width="130"/>
+
+                    <DataGridTextColumn Header="DEPRECIACIÓN"
+                    Binding="{Binding DepreciacionAcumulada, StringFormat=C}"
+                    Width="140"/>
+
+                    <DataGridTextColumn Header="VALOR EN LIBROS"
+                    Binding="{Binding ValorEnLibros, StringFormat=C}"
+                    Width="140"/>
+
+                    <DataGridTemplateColumn Header="EDITAR" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="✏"
+                    Width="32"
+                    Height="32"
+                    Background="#2563EB"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Editar bien"
+                    Click="BtnEditar_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+
+                    <!-- 📷 FOTOS -->
+                    <DataGridTemplateColumn Header="FOTOS" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="📷"
+                                        Width="32"
+                                        Height="32"
+                                        Background="#1B5E4A"
+                                        Foreground="White"
+                                        BorderThickness="0"
+                                        Cursor="Hand"
+                                        ToolTip="Ver fotos del bien"
+                                        Click="BtnFotos_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="X" Width="90">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="🗑"
+                    Width="32"
+                    Height="32"
+                    Background="#DC2626"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    ToolTip="Eliminar bien"
+                    Click="BtnEliminar_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,132 @@
+﻿<Window x:Class="InventarioUI.Views.MovimientoBienForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registrar movimiento de bien"
+        Width="520"
+        Height="640"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#F9FAFB">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="25">
+
+            <!-- TÍTULO -->
+            <TextBlock Text="Movimiento de bien patrimonial"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#11261E"
+                       Margin="0,0,0,20"/>
+
+            <!-- BIEN -->
+            <TextBlock Text="Bien" FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbBien"
+          Height="36"
+          Margin="0,4,0,14"
+          SelectedValuePath="Id"
+          SelectionChanged="CbBien_SelectionChanged">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock>
+                    <Run Text="["/>
+                    <Run Text="{Binding CodigoContable}" FontWeight="Bold"/>
+                    <Run Text="] "/>
+                    <Run Text="{Binding Descripcion}"/>
+                    <Run Text=" - "/>
+<Run Text="{Binding Ubicacion.Nombre}" Foreground="#6B7280"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+            </ComboBox>
+
+            <!-- TIPO -->
+            <TextBlock Text="Tipo de movimiento" FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbTipo"
+                      Height="36"
+                      Margin="0,4,0,14"
+                      SelectionChanged="CbTipo_SelectionChanged">
+                <ComboBoxItem Content="INGRESO"/>
+                <ComboBoxItem Content="TRASLADO"/>
+                <ComboBoxItem Content="BAJA"/>
+                <ComboBoxItem Content="CAMBIO_ESTADO"/>
+            </ComboBox>
+
+            <!-- UBICACIÓN ORIGEN -->
+            <TextBlock x:Name="lblOrigen"
+                       Text="Ubicación origen"
+                       FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbOrigen"
+                      Height="36"
+                      Margin="0,4,0,14"
+                      DisplayMemberPath="Nombre"
+                      SelectedValuePath="Id"/>
+
+            <!-- UBICACIÓN DESTINO -->
+            <TextBlock x:Name="lblDestino"
+                       Text="Ubicación destino"
+                       FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbDestino"
+                      Height="36"
+                      Margin="0,4,0,14"
+                      DisplayMemberPath="Nombre"
+                      SelectedValuePath="Id"/>
+
+            <!-- ESTADO ANTERIOR -->
+            <TextBlock x:Name="lblEstadoAnterior"
+                       Text="Estado anterior"
+                       FontWeight="SemiBold"/>
+            <TextBox x:Name="txtEstadoAnterior"
+                     Height="36"
+                     IsReadOnly="True"
+                     Margin="0,4,0,14"/>
+
+            <!-- ESTADO NUEVO -->
+            <TextBlock x:Name="lblEstadoNuevo"
+                       Text="Estado nuevo"
+                       FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbEstadoNuevo"
+                      Height="36"
+                      Margin="0,4,0,14">
+                <ComboBoxItem Content="B"/>
+                <ComboBoxItem Content="R"/>
+                <ComboBoxItem Content="M"/>
+            </ComboBox>
+
+            <!-- OBSERVACIÓN -->
+            <TextBlock Text="Observación" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtObservacion"
+                     Height="90"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     Margin="0,4,0,20"/>
+
+            <!-- BOTONES -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                <Button Content="Guardar"
+                        Width="120"
+                        Height="36"
+                        Background="#1B5E4A"
+                        Foreground="White"
+                        FontWeight="SemiBold"
+                        BorderThickness="0"
+                        Margin="0,0,10,0"
+                        Click="BtnGuardar_Click"/>
+
+                <Button Content="Cancelar"
+                        Width="120"
+                        Height="36"
+                        Background="#6B7280"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="BtnCancelar_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,148 @@
+﻿<Window x:Class="InventarioUI.Views.BienForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bien patrimonial"
+        WindowStartupLocation="CenterScreen"
+        Width="520"
+        Height="700"
+        ResizeMode="NoResize"
+        Background="#F9FAFB">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="25">
+
+            <!-- TÍTULO -->
+            <TextBlock Text="Bien patrimonial"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#111827"
+                       Margin="0,0,0,20"/>
+
+            <!-- CÓDIGO -->
+            <TextBlock Text="Código contable" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtCodigo"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- DESCRIPCIÓN -->
+            <TextBlock Text="Descripción" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtDescripcion"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- MARCA -->
+            <TextBlock Text="Marca" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtMarca"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- MODELO -->
+            <TextBlock Text="Modelo" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtModelo"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- SERIE -->
+            <TextBlock Text="Serie" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtSerie"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- CANTIDAD -->
+            <TextBlock Text="Cantidad" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtCantidad"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- PRECIO -->
+            <TextBlock Text="Precio" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtPrecio"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- UBICACIÓN (NORMAL, COMO PRODUCTO) -->
+            <TextBlock Text="Ubicación" FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbUbicacion"
+                      Height="40"
+                      Margin="0,6,0,16"
+                      Padding="6"
+                      BorderBrush="#D1D5DB"
+                      DisplayMemberPath="Nombre"
+                      SelectedValuePath="Id"/>
+
+            <!-- FECHA -->
+            <TextBlock Text="Fecha de compra" FontWeight="SemiBold"/>
+            <DatePicker x:Name="dpFechaCompra"
+                        Height="40"
+                        Margin="0,6,0,16"/>
+
+            <!-- VIDA ÚTIL -->
+            <TextBlock Text="Vida útil" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtVidaUtil"
+                     Height="40"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"/>
+
+            <!-- ESTADO (NORMAL) -->
+            <TextBlock Text="Estado del bien" FontWeight="SemiBold"/>
+            <ComboBox x:Name="cbEstado"
+                      Height="40"
+                      Margin="0,6,0,16"
+                      Padding="6"
+                      BorderBrush="#D1D5DB">
+                <ComboBoxItem Content="B"/>
+                <ComboBoxItem Content="R"/>
+                <ComboBoxItem Content="M"/>
+            </ComboBox>
+
+            <!-- OBSERVACIÓN -->
+            <TextBlock Text="Observación" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtObservacion"
+                     Height="90"
+                     Margin="0,6,0,16"
+                     Padding="10"
+                     BorderBrush="#D1D5DB"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"/>
+
+            <!-- BOTONES -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,20,0,0">
+
+                <Button Content="Guardar"
+                        Width="120"
+                        Height="36"
+                        Margin="0,0,10,0"
+                        Background="#1B5E4A"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="BtnGuardar_Click"/>
+
+                <Button Content="Cancelar"
+                        Width="120"
+                        Height="36"
+                        Background="#6B7280"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Click="BtnCancelar_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Window>
